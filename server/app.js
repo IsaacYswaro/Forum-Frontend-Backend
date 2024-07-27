@@ -1,42 +1,57 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const mysql = require('mysql2/promise');
-// import dotenv and configure it
-require("dotenv").config();
+const mysql2 = require("mysql2");
 const userRoutes = require("./routes/userRoute");
 const questionRoutes = require("./routes/questionRoute");
 const answerRoutes = require("./routes/answerRoute");
-const authMiddleware = require("./middleware/authMiddleware");
-const { re } = require("npm-install");
 
 const app = express();
 const port = process.env.PORT || 5000;
-const dbconnection = mysql.createPool({
-  host: process.env.DB_HOST,
+
+// Configure CORS
+app.use(
+  cors({
+    origin: "http://localhost:3000", // assuming the frontend is running on port 3000
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
+
+// Middleware
+app.use(express.json());
+
+// MySQL Connection Pool
+const dbconnection = mysql2.createPool({
+  host: "localhost",
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-app.use(cors()); // Use CORS middleware
-app.use(express.json()); // Use JSON parser middleware
+dbconnection.getConnection((err, connection) => {
+  if (err) {
+    console.error("Database connection error:", err);
+    return;
+  }
+  if (connection) connection.release();
+  console.log("DB connection successful");
+});
 
-// Register user routes
+// Routes
 app.use("/api/users", userRoutes);
-
-// Register question routes
-app.use("/api/questions", authMiddleware, questionRoutes);
-
-// Register answer routes with authentication
-app.use("/api/answers", authMiddleware, answerRoutes);
+app.use("/api/questions", questionRoutes);
+app.use("/api/answers", answerRoutes);
 
 async function start() {
   try {
-    // Check database connection
-    const result = await dbconnection.execute("SELECT 'test' ");
+    const result = await dbconnection.execute("SELECT 'test' AS test");
     console.log("Database connection established", result);
 
-    // Start the server
     app.listen(port, () => {
       console.log(`Server listening on port ${port}`);
     });

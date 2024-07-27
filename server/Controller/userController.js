@@ -1,8 +1,7 @@
 const dbconnection = require("../db/dbConfig");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { StatusCodes } = require("http-status-codes");
 const jwt = require("jsonwebtoken");
-const { PROCESSING_OPTIONS } = require("npm-install");
 
 async function register(req, res) {
   const { username, firstname, lastname, email, password } = req.body;
@@ -94,7 +93,7 @@ async function checkUser(req, res) {
 }
 async function getUserInfo(req, res) {
   try {
-    const userId = req.user.userid; 
+    const userId = req.user.userid;
     const [user] = await dbconnection.query(
       "SELECT username FROM users WHERE userid = ?",
       [userId]
@@ -114,4 +113,3 @@ async function getUserInfo(req, res) {
 }
 
 module.exports = { register, login, checkUser, getUserInfo };
-
