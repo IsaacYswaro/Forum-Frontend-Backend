@@ -32,7 +32,7 @@ const questionid = uuidv4();
 async function getQuestions(req, res) {
   try {
     const [questions] = await dbconnection.query(
-      "SELECT q.title, q.description, u.username, q.questionid FROM questions q JOIN users u ON q.userid = u.userid ORDER BY q.id DESC"
+      "SELECT q.title, q.description, u.username, q.questionid FROM questions q JOIN users u ON q.userid = u.userid ORDER BY q.questionid DESC"
     );
     res.status(StatusCodes.OK).json(questions);
   } catch (error) {
@@ -42,6 +42,7 @@ async function getQuestions(req, res) {
       .json({ msg: "Something Went Wrong" });
   }
 }
+
 
 
 async function detailQuestions(req, res) {
