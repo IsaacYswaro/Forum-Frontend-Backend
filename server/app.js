@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 // Configure CORS
 app.use(
   cors({
-    origin: "http://localhost:3000", // assuming the frontend is running on port 3000
+    origin: "https://isaacyswaro.github.io", // Update to your GitHub Pages URL
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
