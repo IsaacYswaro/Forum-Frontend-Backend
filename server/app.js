@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 // Configure CORS
 app.use(
   cors({
-    origin: "https://IsaacYswaro.github.io/forum-frontend", // Update to your GitHub Pages URL
+    origin: "https://IsaacYswaro.github.io/forum-frontend", 
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
