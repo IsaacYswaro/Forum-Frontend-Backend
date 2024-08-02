@@ -7,11 +7,11 @@
 6 silly config load:file:C:\Users\mikem\.npm-global\etc\npmrc
 7 verbose title npm view are-we-there-yet description dist-tags.latest homepage version time
 8 verbose argv "view" "--json" "--" "are-we-there-yet" "description" "dist-tags.latest" "homepage" "version" "time"
-9 verbose logfile logs-max:10 dir:C:\Users\mikem\Desktop\Evangadi\Final-Projects\Functional-Scope-and-Design\Evangadi-Forum\server\Usersmikem.npm\_logs\2024-07-25T01_13_25_136Z-
-10 verbose logfile C:\Users\mikem\Desktop\Evangadi\Final-Projects\Functional-Scope-and-Design\Evangadi-Forum\server\Usersmikem.npm\_logs\2024-07-25T01_13_25_136Z-debug-0.log
+9 verbose logfile logs-max:10 dir:C:\Users\mikem\Desktop\Evangadi\Final-Projects\Functional-Scope-and-Design\Evangadi-Forum\server\Usersmikem.npm\_logs\2024-08-01T03_40_27_636Z-
+10 verbose logfile C:\Users\mikem\Desktop\Evangadi\Final-Projects\Functional-Scope-and-Design\Evangadi-Forum\server\Usersmikem.npm\_logs\2024-08-01T03_40_27_636Z-debug-0.log
 11 silly logfile start cleaning logs, removing 2 files
 12 silly logfile done cleaning log files
-13 http fetch GET 200 https://registry.npmjs.org/are-we-there-yet 880ms (cache revalidated)
+13 http fetch GET 200 https://registry.npmjs.org/are-we-there-yet 204ms (cache updated)
 14 verbose cwd c:\Users\mikem\Desktop\Evangadi\Final-Projects\Functional-Scope-and-Design\Evangadi-Forum\server
 15 verbose os Windows_NT 10.0.22631
 16 verbose node v20.11.1

@@ -9,10 +9,21 @@ const answerRoutes = require("./routes/answerRoute");
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Configure CORS
+// Define allowed origins based on environment
+const allowedOrigins = [
+  "https://isaacyswaro.github.io",
+  "http://localhost:3000",
+];
+
 app.use(
   cors({
-    origin: "https://isaacyswaro.github.io", 
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
